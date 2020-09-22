@@ -18,21 +18,20 @@
         <h:body>
             <ui:decorate template="template.xhtml"></ui:decorate>
             <h:form>
+                <p:messages/>
                 <p:panelGrid columns="2" styleClass="showcase-text-align-center" style="width: 50%;">
                     <h:outputText value="Tema" /> 
-                    <p:inputText placeholder="Ingrese tema" />
-
+                    <p:inputText placeholder="Ingrese tema" value="#{controladorPlan.tema}"/>
+                    
                     <h:outputText value="Fecha" /> 
-                    <p:calendar value="#{dateBean.date}" mode="popup" showOn="button" />
+                    <p:calendar value="#{controladorPlan.fecha}" mode="popup"/>
 
-                    <h:outputText value="Estudiantes" /> 
-                    <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
+                    <!--<h:outputText value="Estudiantes" /> 
+                    <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />-->
 
-                    <h:outputText value="Plan de titulación" /> 
-                    <input type="File" value="Selecione archivo" />
                 </p:panelGrid>
-                <p:commandButton value="Guardar Cambios" action="#" />
-                <p:commandButton value="Cancelar" action="#" />
+                <p:commandButton value="Guardar Cambios" action="#{controladorPlan.guardarPlan()}"/>
+                <p:commandButton value="Cancelar" action="homeDocente" />
             </h:form>
         </h:body>
 

@@ -32,9 +32,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
+
     @Override
-    public Usuario buscarUsuarioLogin(String nick, String pass){
+    public Usuario buscarUsuarioLogin(String nick, String pass) {
         List<Usuario> lista;
         try {
             String query = "select u from Usuario u where u.nick = :nick and u.password = :password";
@@ -42,10 +42,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             consulta.setParameter("nick", nick);
             consulta.setParameter("password", pass);
             //consulta.setParameter(2, DigestUtils.md5Hex(password));
-            
+
             lista = consulta.getResultList();
-      
-            if(lista.isEmpty()){
+
+            if (lista.isEmpty()) {
                 return null;
             }
             return lista.get(0);
@@ -53,5 +53,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             return null;
         }
     }
-    
+
+    @Override
+    public List<Usuario> findByPlan() {
+        List<Usuario> lista;
+        try {
+            String query = "select u from Usuario u, Plan p, plan_usuario pu\n" +
+                            "where u.id_usuario = pu.id_usuario and\n" +
+                            "pu.id_plan=p.id_plan and p.id_plan=:id_plan";
+        } catch (Exception e) {
+        }
+
+    }
+
 }
