@@ -6,6 +6,7 @@
 package ec.edu.uce.titulacion.session;
 
 import ec.edu.uce.titulacion.entidades.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -56,14 +57,14 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     @Override
     public List<Usuario> findByPlan() {
-        List<Usuario> lista;
+        List<Usuario> lista = new ArrayList();
         try {
             String query = "select u from Usuario u, Plan p, plan_usuario pu\n" +
                             "where u.id_usuario = pu.id_usuario and\n" +
                             "pu.id_plan=p.id_plan and p.id_plan=:id_plan";
         } catch (Exception e) {
         }
-
+        return lista;
     }
 
 }
